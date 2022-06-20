@@ -6,7 +6,9 @@ import { actChangeStep, addValue } from "../actions/actStep";
 function Step4(props) {
   //const dataStep = props.step.data;
   const SignupSchema = Yup.object().shape({
-    checkbox: Yup.string('Invalid checkbox').required('Required'),
+    checkbox:  Yup.boolean('Invalid checkbox').required('Required')
+    .oneOf([true], "The terms and conditions must be accepted."),
+    
   });
   const kq= 
     <div className="container">
@@ -63,7 +65,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => {
     return {
         actChangeStep: step => dispatch(actChangeStep(step)),
-        addValue: values => dispatch(addValue(values))
+        addValue: values => dispatch(addValue(values)),
     };
 };
 
