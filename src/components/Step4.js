@@ -1,36 +1,62 @@
 import { connect } from 'react-redux'; 
-
-import { actChangeStep } from "../actions/actStep";
+import { Formik, Form, Field } from 'formik';
+import * as Yup from 'yup';
+import { actChangeStep, addValue } from "../actions/actStep";
 
 function Step4(props) {
 
-  const dataStep = props.step.data;
+  //const dataStep = props.step.data;
+
+  const SignupSchema = Yup.object().shape({
+    password: Yup.string('Invalid password').required('Required'),
+    confirmPassword:  Yup.string()
+    .oneOf([Yup.ref('password'), null], 'Passwords must match').required('Required'),
+  });
 
   const kq= 
     <div className="container">
-      <h1>Danh sách</h1>
-      <table className="table">
-        <thead>
-          <tr>
-            <th scope="col">First name</th>
-            <th scope="col">Last name</th>
-            <th scope="col">Email</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{dataStep?.firstName}</td>
-            <td>{dataStep?.lastName}</td>
-            <td>{dataStep?.email}</td>
-          </tr>
-        </tbody>
-      </table>
-      {/* <p> {dataStep?.firstName}</p>
-      <p> {dataStep?.lastName}</p>
-      <p> {dataStep?.email}</p> */}
-      {/* <p> {dataStep?.password}</p> */}
-      <button onClick={() => props.actChangeStep(2) } className='btn btn-warning'> Back</button>
-     
+      <div className="row">
+        <div className='col-md-12 col-xs-12 col-sm-12'>
+        <h1>Complete</h1>
+        </div>
+            
+        <div className='col-md-12 col-xs-12 col-sm-12'>
+            <Formik 
+                initialValues={{
+                    firstName: props.step.data?.firstName,
+                    lastName: props.step.data?.lastName,
+                    email:  props.step.data?.email,
+                    confirmEmail:  props.step.data?.email,
+                    password:  props.step.data?.password,
+                    confirmPassword:  props.step.data?.confirmPassword,
+                    checkbox: props.step.data?.checkbox,
+                }}
+                validationSchema={SignupSchema}
+                onSubmit={values => {
+                        // same shape as initial values
+                    props.actChangeStep(4);
+                    props.addValue(values)
+                }}
+            >
+                {({ errors, touched }) => (
+                    <Form>
+                    
+                    <p>By clicking "Accept" I agree that:</p>
+                    <ul>
+                      <li>I have read and accepted the <a href='/'>User Agreement</a></li>
+                      <li>I have read and accepted the <a href='/'>Privacy Policy</a></li>
+                    </ul>
+                    <p>
+                        <Field name="checkbox" type="checkbox" className="form-control" />
+                        {errors.checkbox && touched.checkbox ? <div className='errors'>{errors.checkbox}</div> : null}
+                    </p>
+                    <button onClick={() => props.actChangeStep(3) } className='btn btn-warning'> Back</button>
+                    <button type="submit" className='btn btn-success'>Finish</button>
+                    </Form>
+                )}
+            </Formik>
+        </div>
+      </div>
     </div>
   return (kq);
 }
@@ -40,9 +66,11 @@ const mapStateToProps = (state, ownProps) => {
     step: state.step,
   }; 
 };
+
 const mapDispatchToProps = dispatch => {
     return {
         actChangeStep: step => dispatch(actChangeStep(step)),
+        addValue: values => dispatch(addValue(values))
     };
 };
 
