@@ -8,9 +8,8 @@ function Step4(props) {
   //const dataStep = props.step.data;
 
   const SignupSchema = Yup.object().shape({
-    password: Yup.string('Invalid password').required('Required'),
-    confirmPassword:  Yup.string()
-    .oneOf([Yup.ref('password'), null], 'Passwords must match').required('Required'),
+    checkbox: Yup.string('Invalid checkbox').required('Required'),
+    
   });
 
   const kq= 
