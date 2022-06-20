@@ -9,7 +9,8 @@ function Step3(props) {
 
   const SignupSchema = Yup.object().shape({
     password: Yup.string('Invalid password').required('Required'),
-    confirmPassword: Yup.string('Invalid confirmPassword').required('Required'),
+    confirmPassword:  Yup.string()
+    .oneOf([Yup.ref('password'), null], 'Passwords must match').required('Required'),
   });
 
   const kq= 
@@ -46,7 +47,7 @@ function Step3(props) {
                         <Field name="confirmPassword" type="password" className="form-control" />
                         {errors.confirmPassword && touched.confirmPassword ? <div className='errors'>{errors.confirmPassword}</div> : null}
                     </p>
-                    <button onClick={() => props.actChangeStep(0) } className='btn btn-warning'> Back</button>
+                    <button onClick={() => props.actChangeStep(1) } className='btn btn-warning'> Back</button>
                     <button type="submit" className='btn btn-success'>Finish</button>
                     </Form>
                 )}
@@ -57,7 +58,7 @@ function Step3(props) {
   return (kq);
 }
 const mapStateToProps = (state, ownProps) => {  
-  //console.log("Toàn bộ state " , state);
+  console.log("Toàn bộ state " , state);
   return {  
     step: state.step,
   }; 

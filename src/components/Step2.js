@@ -8,8 +8,9 @@ function Step2(props) {
 
   //const dataStep = props.step.data;
   const SignupSchema = Yup.object().shape({
-    email: Yup.string().email('Invalid email').required('Required'),
-    confirmEmail: Yup.string().email('Invalid confirmEmail').required('Required'),
+    email: Yup.string().email('Invalid email format').required('Required'),
+    confirmEmail: Yup.string()
+    .oneOf([Yup.ref('email'), null], 'Email does not match').required('Required'),
   });
 
   const kq= 

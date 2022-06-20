@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'; 
 
-import { actChangeStep, addValue } from "../actions/actStep";
+import { actChangeStep } from "../actions/actStep";
 
 function Step4(props) {
 
@@ -9,7 +9,7 @@ function Step4(props) {
   const kq= 
     <div className="container">
       <h1>Danh sách</h1>
-      <table class="table">
+      <table className="table">
         <thead>
           <tr>
             <th scope="col">First name</th>
@@ -29,7 +29,8 @@ function Step4(props) {
       <p> {dataStep?.lastName}</p>
       <p> {dataStep?.email}</p> */}
       {/* <p> {dataStep?.password}</p> */}
-      <button onClick={() => props.actChangeStep(0) } className='btn btn-warning'> Back</button>
+      <button onClick={() => props.actChangeStep(2) } className='btn btn-warning'> Back</button>
+     
     </div>
   return (kq);
 }
