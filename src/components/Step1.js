@@ -32,7 +32,11 @@ function Step1(props) {
                 initialValues={{
                   firstName: props.step.data?.firstName,
                   lastName: props.step.data?.lastName,
-                  //email:  dataStep?.email,
+                  email:  props.step.data?.email,
+                  confirmEmail:  props.step.data?.email,
+                  password:  props.step.data?.password,
+                  confirmPassword:  props.step.data?.confirmPassword,
+                  checkbox: props.step.data?.checkbox,
                 }}
                 validationSchema={SignupSchema}
                 onSubmit={values => {

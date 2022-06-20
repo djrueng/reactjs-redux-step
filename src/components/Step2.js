@@ -24,9 +24,12 @@ function Step2(props) {
           <Formik 
             initialValues={{
               firstName: props.step.data?.firstName,
-              lastName: props.step.data?.lastName,
-              email:  props.step.data?.email,
-              confirmEmail:  props.step.data?.email,
+                  lastName: props.step.data?.lastName,
+                  email:  props.step.data?.email,
+                  confirmEmail:  props.step.data?.email,
+                  password:  props.step.data?.password,
+                  confirmPassword:  props.step.data?.confirmPassword,
+                  checkbox: props.step.data?.checkbox,
             }}
             validationSchema={SignupSchema}
             onSubmit={values => {

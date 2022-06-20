@@ -23,12 +23,13 @@ function Step3(props) {
         <div className='col-md-12 col-xs-12 col-sm-12'>
             <Formik 
                 initialValues={{
-                    firstName: props.step.data?.firstName,
-                    lastName: props.step.data?.lastName,
-                    email:  props.step.data?.email,
-                    confirmEmail:  props.step.data?.email,
-                    password:  props.step.data?.password,
-                    confirmPassword:  props.step.data?.confirmPassword,
+                  firstName: props.step.data?.firstName,
+                  lastName: props.step.data?.lastName,
+                  email:  props.step.data?.email,
+                  confirmEmail:  props.step.data?.email,
+                  password:  props.step.data?.password,
+                  confirmPassword:  props.step.data?.confirmPassword,
+                  checkbox: props.step.data?.checkbox,
                 }}
                 validationSchema={SignupSchema}
                 onSubmit={values => {

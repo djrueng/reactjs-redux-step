@@ -47,10 +47,10 @@ function Step4(props) {
                       <li>I have read and accepted the <a href='/'>Privacy Policy</a></li>
                     </ul>
                     <p>
-                        <Field name="checkbox" type="checkbox" className="form-control" />
+                        <Field name="checkbox" type="checkbox" />
                         {errors.checkbox && touched.checkbox ? <div className='errors'>{errors.checkbox}</div> : null}
                     </p>
-                    <button onClick={() => props.actChangeStep(3) } className='btn btn-warning'> Back</button>
+                    <button onClick={() => props.actChangeStep(2) } className='btn btn-warning'> Back</button>
                     <button type="submit" className='btn btn-success'>Finish</button>
                     </Form>
                 )}
