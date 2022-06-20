@@ -4,21 +4,16 @@ import * as Yup from 'yup';
 import { actChangeStep, addValue } from "../actions/actStep";
 
 function Step4(props) {
-
   //const dataStep = props.step.data;
-
   const SignupSchema = Yup.object().shape({
     checkbox: Yup.string('Invalid checkbox').required('Required'),
-    
   });
-
   const kq= 
     <div className="container">
       <div className="row">
         <div className='col-md-12 col-xs-12 col-sm-12'>
         <h1>Complete</h1>
-        </div>
-            
+        </div>   
         <div className='col-md-12 col-xs-12 col-sm-12'>
             <Formik 
                 initialValues={{
@@ -65,7 +60,6 @@ const mapStateToProps = (state, ownProps) => {
     step: state.step,
   }; 
 };
-
 const mapDispatchToProps = dispatch => {
     return {
         actChangeStep: step => dispatch(actChangeStep(step)),
